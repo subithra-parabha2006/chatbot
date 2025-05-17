@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Chatbot</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
+        .user { color: blue; }
+        .bot { color: green; }
+    </style>
+    <list>
+      <l>
+<html>
+    
+</html>
+      </l>
+    </list>
+</head>
+<body>
+    <h2>Healthcare Diagnostic Chatbot</h2>
+    <div id="chat"></div>
+    <input type="text" id="userInput" placeholder="Describe your symptoms...">
+    <button onclick="getResponse()">Send</button>
+
+    <script>
+        const responses = {
+            fever: "You may be experiencing a viral infection. Drink fluids and rest.",
+            headache: "It might be a tension headache. Relax or take a mild painkiller.",
+            cough: "A persistent cough might suggest a cold or infection.",
+            "chest pain": "Chest pain can be serious. Please seek medical attention immediately."
+        };
+
+        function getResponse() {
+            const input = document.getElementById("userInput").value.toLowerCase();
+            const chat = document.getElementById("chat");
+            chat.innerHTML += `<div class='user'><b>You:</b> ${input}</div>`;
+
+            let found = false;
+            for (const symptom in responses) {
+                if (input.includes(symptom)) {
+                    chat.innerHTML += `<div class='bot'><b>Bot:</b> ${responses[symptom]}</div>`;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                chat.innerHTML += `<div class='bot'><b>Bot:</b> Please provide more specific symptoms.</div>`;
+            }
+
+            document.getElementById("userInput").value = "";
+            chat.scrollTop = chat.scrollHeight;
+        }
+    </script>
+</body>
+</html>
